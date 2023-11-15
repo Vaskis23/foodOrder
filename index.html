@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        let foodNames = ["Pizza", "Salad", "Soup"];
+        let foodPrices = [100.00, 75.00, 50.00];
+
+        let menu = `
+        ####################
+        menu
+        ####################`;
+
+        for (let i = 0; i < foodNames.length; i++) {
+            menu += `${i + 1} ${foodNames[i]}\n`;
+        }
+        menu += `choose:`;
+
+        let option = parseInt(prompt(menu)) - 1;
+        let optionDescription = `You've chosen "${foodNames[option]}"
+        how many do you want?:
+        `;
+        let portions = parseInt(prompt(optionDescription));
+        let cost = foodPrices[option] * portions;
+
+        let orderDescription = `
+        "${foodNames[option]}": ${portions} x ${foodPrices[option]} = ${cost}`;
+
+        // add a confirm() that asks if the client wants delivery
+        let wantsDelivery = confirm("Do you want delivery?");
+        
+        if (wantsDelivery) {
+            // if the client denies then print a message that he has to pick up 500
+            if (cost > 500) {
+                alert(`${orderDescription}\nDelivery is free!`);
+            } else {
+                alert(`${orderDescription}\nDelivery cost: $50`);
+            }
+        } else {
+            alert(`${orderDescription}\nPlease pick up at the restaurant.`);
+        }
+    </script>
+</body>
+</html>
